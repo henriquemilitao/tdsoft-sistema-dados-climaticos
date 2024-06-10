@@ -1,8 +1,10 @@
 import { Router } from 'express'
-import WheaterDataController from './app/controller/WheaterDataController'
+import WheaterDataController from './app/controllers/WheaterDataController'
 
 const routes = new Router()
 
-routes.get('/', WheaterDataController.store)
+routes.post('/', WheaterDataController.store)
+
+routes.get('/', WheaterDataController.index)
 
 export default routes

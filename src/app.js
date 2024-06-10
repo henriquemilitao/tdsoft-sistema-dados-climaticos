@@ -1,6 +1,6 @@
 import express from 'express'
 import routes from './routes'
-
+import configureSwagger from '../swaggerConfig'
 import './database'
 
 class App {
@@ -9,6 +9,7 @@ class App {
 
         this.middlewares()
         this.routes()
+        this.configureSwagger()
     }
 
     middlewares() {
@@ -17,6 +18,10 @@ class App {
 
     routes() {
         this.app.use(routes)
+    }
+
+    configureSwagger() {
+        configureSwagger(this.app)
     }
 }
 
