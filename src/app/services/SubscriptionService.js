@@ -1,13 +1,12 @@
 import SubscriptionRepository from "../repositories/SubscriptionRepository"
-
+import {v4} from 'uuid'
 class SubscriptionService {
     async register(email, frequency) {
         const existingSubscription = await SubscriptionRepository.findByEmail(email)
         if (existingSubscription) {
             throw new Error('Email already subscribed')
         }
-
-        return await SubscriptionRepository.create({ email, frequency })
+        return await SubscriptionRepository.create({ id: v4(), email, frequency })
     }
 
     async unregister(email) {

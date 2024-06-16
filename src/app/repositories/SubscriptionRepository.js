@@ -1,4 +1,4 @@
-import Subscriptio from "../models/Subscription";
+import Subscription from "../models/Subscription";
 
 class SubscriptionRepository {
     async create(subscriptionData) {
