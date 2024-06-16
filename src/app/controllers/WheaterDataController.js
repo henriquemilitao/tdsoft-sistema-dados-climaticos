@@ -101,7 +101,7 @@ class WeatherDataController {
  * /weather-data:
  *   get:
  *     summary: Retorna todos os dados climáticos do banco de dados.
- *     description: Esta rota permite listar todos os dados climáticos armazenados no banco de dados.
+ *     description: Esta rota permite listar todos os dados climáticos armazenados no banco de dados. Caso deseje usar paginação o padrão do query params é ?page=(paginas que deseja)&limit=(numero de itens que deseja na página). O padrão é 1 e 10 respectivamente.
  *     responses:
  *       200:
  *         description: Requisição bem-sucedida. Retorna uma lista de todos os dados climáticos armazenados no banco de dados.
