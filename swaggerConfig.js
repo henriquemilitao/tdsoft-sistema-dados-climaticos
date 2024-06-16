@@ -29,7 +29,20 @@ const configureSwagger = (app) => {
                             humidity: { type: 'number' },
                             wind_speed: { type: 'number' },
                             wind_degrees: { type: 'number' },
-                            weather_description: { type: 'string' }
+                            weather_description: { type: 'string' },
+                            createdAt: { type: 'string', format: 'date-time' },
+                            updatedAt: { type: 'string', format: 'date-time' },
+                        },
+                    },
+                    Subscription: {
+                        type: 'object',
+                        properties: {
+                            id: { type: 'string', format: 'uuid' },
+                            email: { type: 'string', format: 'email' },
+                            frequency: {
+                                type: 'string',
+                                enum: ['weekly', 'biweekly', 'monthly', 'semiannually'],
+                            },
                         },
                     },
                 },

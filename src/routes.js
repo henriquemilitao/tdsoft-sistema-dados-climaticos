@@ -4,8 +4,8 @@ import SubscriptionController from './app/controllers/SubscriptionController'
 
 const routes = new Router()
 
-routes.post('/', WheaterDataController.store)
-routes.get('/', WheaterDataController.index)
+routes.post('/weather-data', WheaterDataController.store)
+routes.get('/weather-data', WheaterDataController.index)
 
 routes.post('/subscriptions', SubscriptionController.store)
 routes.delete('/subscriptions/:email', SubscriptionController.delete)
