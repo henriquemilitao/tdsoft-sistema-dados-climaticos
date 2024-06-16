@@ -1,10 +1,11 @@
 import Sequelize from 'sequelize'
 
 import WheaterData from '../app/models/WheaterData'
+import Subscription from '../app/models/Subscription'
 
 import configDataBase from '../config/database'
 
-const models = [WheaterData]
+const models = [WheaterData, Subscription]
 
 class DataBase {
   constructor() {
