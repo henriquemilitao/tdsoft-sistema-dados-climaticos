@@ -34,6 +34,7 @@ class WeatherDataController {
      *               location:
      *                 type: string
      *                 description: Nome da localidade para a qual deseja obter os dados climáticos.
+     *                 example: Paris
      *     responses:
      *       200:
      *         description: Requisição bem-sucedida. Retorna os dados climáticos adicionados ao banco de dados.
@@ -41,6 +42,16 @@ class WeatherDataController {
      *           application/json:
      *             schema:
      *               $ref: '#/components/schemas/WeatherData'
+     *       400:
+     *         description: Requisição inválida. Verifique os dados fornecidos.
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 error:
+     *                   type: string
+     *                   example: "Requisição inválida. Verifique os dados fornecidos."
      */
     async store(request, response){
 
@@ -83,6 +94,16 @@ class WeatherDataController {
      *                   type: array
      *                   items:
      *                     $ref: '#/components/schemas/WeatherData'
+     *       400:
+     *         description: Requisição inválida. Verifique os parâmetros fornecidos.
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 error:
+     *                   type: string
+     *                   example: "Requisição inválida. Verifique os parâmetros fornecidos."
      */
     async index(request, response) {
         // Se quiser usar a paginação, tenho que usar esses parâmetros abaixo, se não usar, já está estabelecido um padrão

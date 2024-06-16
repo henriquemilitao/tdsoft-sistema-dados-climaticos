@@ -30,6 +30,16 @@ class SubscriptionController {
      *           application/json:
      *             schema:
      *               $ref: '#/components/schemas/Subscription'
+     *       400:
+     *         description: Requisição inválida. Verifique os dados fornecidos.
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 error:
+     *                   type: string
+     *                   example: "Requisição inválida. Verifique os dados fornecidos."
      */
     async store(request, response) {
 
@@ -69,9 +79,10 @@ class SubscriptionController {
      *           type: string
      *           format: email
      *         description: Email do usuário.
+     *         example: user@example.com
      *     responses:
      *       200:
-     *         description: Assinatura cancelada com sucesso.
+     *         description: Usuário descadastrado com sucesso.
      *         content:
      *           application/json:
      *             schema:
@@ -79,8 +90,18 @@ class SubscriptionController {
      *               properties:
      *                 message:
      *                   type: string
-     *                   example: Subscription deleted successfully
-     */
+     *                   example: "Usuário descadastrado com sucesso."
+     *       400:
+     *         description: Requisição inválida. O e-mail fornecido pode estar incorreto.
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 error:
+     *                   type: string
+     *                   example: "Requisição inválida. O e-mail fornecido está incorreto."
+      */
     async delete(request, response) {
 
         const schema = Yup.object().shape({
@@ -122,6 +143,16 @@ class SubscriptionController {
      *                   type: array
      *                   items:
      *                     $ref: '#/components/schemas/Subscription'
+     *       400:
+     *         description: Requisição inválida.
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 error:
+     *                   type: string
+     *                   example: "Requisição inválida."
      */
     async index(request, response) {
         try {
