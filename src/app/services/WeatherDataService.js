@@ -1,5 +1,5 @@
 import axios from "axios"
-import WeatherData from "../models/WheaterData"
+import WeatherDataRepository from '../repositories/WeatherDataRepository'
 
 class WeatherDataService {
     async fetchWeatherData(location) {
@@ -21,24 +21,29 @@ class WeatherDataService {
     }
 
     async saveOrUpdateWeatherData(weatherData) {
-        const idExists = await WeatherData.findOne({ where: { id: weatherData.id } })
-    
-        if (idExists) {
-          return await WeatherData.update(weatherData, { where: { id: weatherData.id } })
+        const existingData = await WeatherDataRepository.findById(weatherData.id)
+
+        if (existingData) {
+            return await WeatherDataRepository.update(weatherData.id, weatherData)
         } else {
-          return await WeatherData.create(weatherData)
+            return await WeatherDataRepository.create(weatherData)
         }
-      }
+    }
 
     async getAllWeatherData(page = 1, limit = 10) {
         const offset = (page - 1) * limit;
-        const { count, rows } = await WeatherData.findAndCountAll({ limit, offset })
+        const { count, rows } = await WeatherDataRepository.findAll({ limit, offset })
 
-        return { page, limit, total: count, data: rows }
+        return {
+            page,
+            limit,
+            total: count,
+            data: rows,
+        }
     }
 
     async getWeatherDataById(id) {
-        return await WeatherData.findByPk(id)
+        return await WeatherDataRepository.findById(id)
     }
 }
 

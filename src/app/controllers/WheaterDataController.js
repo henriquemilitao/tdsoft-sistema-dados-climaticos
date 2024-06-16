@@ -41,9 +41,9 @@ class WeatherDataController {
             const weatherData = await WeatherDataService.getAllWeatherData(page, limit);
             return response.json(weatherData);
             
-          } catch (error) {
+        } catch (error) {
             return response.status(500).json({ error: error.message });
-          }
+        }
     }
 
     async show(request, response) {
