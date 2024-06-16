@@ -1,7 +1,7 @@
 import SubscriptionRepository from "../repositories/SubscriptionRepository"
 import {v4} from 'uuid'
 class SubscriptionService {
-    async register(email, frequency) {
+    async store(email, frequency) {
         const existingSubscription = await SubscriptionRepository.findByEmail(email)
         if (existingSubscription) {
             throw new Error('Email already subscribed')
@@ -9,7 +9,7 @@ class SubscriptionService {
         return await SubscriptionRepository.create({ id: v4(), email, frequency })
     }
 
-    async unregister(email) {
+    async delete(email) {
         const existingSubscription = await SubscriptionRepository.findByEmail(email)
         if (!existingSubscription) {
             throw new Error('Email not found')
@@ -19,7 +19,7 @@ class SubscriptionService {
         return { message: 'Unsubscribed successfully' }
     }
 
-    async listSubscriptions() {
+    async index() {
         return await SubscriptionRepository.findAll()
     }
 }

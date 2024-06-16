@@ -7,8 +7,8 @@ const routes = new Router()
 routes.post('/', WheaterDataController.store)
 routes.get('/', WheaterDataController.index)
 
-routes.post('/subscriptions', SubscriptionController.register)
-routes.delete('/subscriptions', SubscriptionController.unregister)
-routes.get('/subscriptions', SubscriptionController.listSubscriptions)
+routes.post('/subscriptions', SubscriptionController.store)
+routes.delete('/subscriptions/:email', SubscriptionController.delete)
+routes.get('/subscriptions', SubscriptionController.index)
 
 export default routes

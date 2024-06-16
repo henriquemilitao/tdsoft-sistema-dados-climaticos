@@ -1,7 +1,7 @@
 import SubscriptionService from "../services/SubscriptionService"
 import * as Yup from 'yup'
 class SubscriptionController {
-    async register(request, response) {
+    async store(request, response) {
 
         const schema = Yup.object().shape({
             email: Yup.string().email().required(),
@@ -17,14 +17,14 @@ class SubscriptionController {
         const { email, frequency } = request.body
 
         try {
-            const subscription = await SubscriptionService.register(email, frequency)
+            const subscription = await SubscriptionService.store(email, frequency)
             return response.status(201).json(subscription)
         } catch (error) {
             return response.status(400).json({ error: error.message })
         }
     }
 
-    async unregister(request, response) {
+    async delete(request, response) {
 
         const schema = Yup.object().shape({
             email: Yup.string().email().required(),
@@ -36,19 +36,19 @@ class SubscriptionController {
             return response.status(400).json({ error: err.errors });
           }
 
-        const { email } = request.body
+        const { email } = request.params
 
         try {
-            const result = await SubscriptionService.unregister(email)
+            const result = await SubscriptionService.delete(email)
             return response.status(200).json(result)
         } catch (error) {
             return response.status(400).json({ error: error.message })
         }
     }
 
-    async listSubscriptions(request, response) {
+    async index(request, response) {
         try {
-            const subscriptions = await SubscriptionService.listSubscriptions()
+            const subscriptions = await SubscriptionService.index()
             return response.status(200).json(subscriptions)
         } catch (error) {
             return response.status(500).json({ error: error.message })
